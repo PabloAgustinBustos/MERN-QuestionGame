@@ -16,6 +16,19 @@ export function checkData(req: Request, res: Response, next: NextFunction){
   return next()
 }
 
+export function checkDataBeforeLogin(req: Request, res: Response, next: NextFunction){
+  const {
+    email,
+    password
+  } = req.body
+
+  if(!email || !password) return res.status(400).json({status: "error", message: "faltan datos"})
+  
+  console.log("se recibió", {email, password})
+
+  return next()
+}
+
 export async function checkUserExists(req: Request, res: Response, next: NextFunction){
   const {
     email,
@@ -26,16 +39,23 @@ export async function checkUserExists(req: Request, res: Response, next: NextFun
     email,
     password
   })
-  
-  if(user) return res.status(409).json({status: "error", message: "el usuario ya existe"})
+
+  if(user) {
+    req.body.userExists = true
+  }else{
+    req.body.userExists = false
+  }
 
   return next()
 }
 
 export function checkPassword(req: Request, res: Response, next: NextFunction){
   const {
-    password
+    password,
+    userExists
   } = req.body
+
+  if(userExists) return res.status(409).json({status: "error", message: "el usuario ya existe"})
 
   if(password.length < 5) return res.status(400).json({status: "error", message: "la contraseña debe ser de al menos 5 caracteres"})
   
