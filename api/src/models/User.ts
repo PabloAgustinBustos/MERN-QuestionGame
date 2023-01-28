@@ -11,7 +11,7 @@ export interface IUser extends Document{
 
 const User = new Schema<IUser>({
   _id: {
-    type: SchemaTypes.UUID,
+    type: String,
     default: () => {
       let id = v4()
 
@@ -26,7 +26,10 @@ const User = new Schema<IUser>({
     required: true
   },
 
-  photo: String,
+  photo: {
+    type: String,
+    default: () => "Default"
+  },
 
   email: {
     type: String,
