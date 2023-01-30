@@ -4,6 +4,8 @@ import cors from "cors"
 
 import connectMongo from "./db"
 import users from "./routes/users"
+import question from "./routes/question"
+import { getCategories } from "./controllers/Question"
 
 
 dotenv.config({
@@ -16,6 +18,8 @@ app.use(cors())
 app.use(express.json())
 
 app.use("/users", users)
+app.use("/questions", question)
+app.get("/categories", getCategories)
 
 try{
   connectMongo()
