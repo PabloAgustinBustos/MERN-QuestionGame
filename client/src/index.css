@@ -31,10 +31,15 @@ input{
 
   border: 0;
   border-radius: 5px;
+  outline: none;
 
-  color: #838383;
+  color: black;
 
   font-size: 16px;
+}
+
+input::placeholder{
+  color: #838383;
 }
 
 .subText{
