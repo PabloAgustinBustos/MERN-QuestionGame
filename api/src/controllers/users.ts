@@ -31,3 +31,9 @@ export async function login(req: Request, res: Response){
 
   return res.status(201).json({status: "good", message: "logeado", token})
 }
+
+export async function rankUsers(req: Request, res: Response){
+  let users = await User.find({}, {__v: 0, email: 0, password: 0})
+
+  return res.status(200).json(users)
+}
