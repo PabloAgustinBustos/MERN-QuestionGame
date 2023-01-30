@@ -5,3 +5,60 @@
   box-sizing: border-box;
   font-family: 'Roboto', sans-serif;
 }
+
+button{
+  width: 155px;
+  height: 37px;
+
+  border: none;
+  border-radius: 10px;
+  
+  background-color: #9212F6;
+  color: white;
+  
+  font-size: 16px;
+}
+
+.close{
+  background-color: #F61249;
+}
+
+input{
+  width: 221px;
+  height: 27px;
+
+  padding-left: 5px;
+
+  border: 0;
+  border-radius: 5px;
+
+  color: #838383;
+
+  font-size: 16px;
+}
+
+.subText{
+  color: #707070;
+  font-size: 16px;
+}
+
+a{
+  color: #394ae8;
+  text-decoration: none;
+}
+
+.bg-form{
+  background: linear-gradient(179.27deg, #38ADAE 0.65%, #7DE659 99.39%);
+}
+
+.bg-categories{
+  background: linear-gradient(262.58deg, rgba(255, 44, 234, 0.44) -6.01%, #32DDBE 107.88%);
+}
+
+.bg-game{
+  background: linear-gradient(78.9deg, #0172AF 4.96%, #0EEC83 97.94%);
+}
+
+.bg-score{
+  background: linear-gradient(108.3deg, #38ADAE 0.91%, #E6597B 100%);
+}
