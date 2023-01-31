@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Route, Routes, useLocation, useParams } from 'react-router-dom'
+import { Navigate, Route, Routes, useLocation, useParams } from 'react-router-dom'
 import s from "./App.module.css"
 import Categories from './pages/Categories'
 import Game from './pages/Game'
@@ -10,6 +10,7 @@ import SetPhoto from './pages/SetPhoto'
 
 function App() {
   const location = useLocation()
+  let isLogged = true
 
   const setBackground = () => {
     if(location.pathname === "/"){
@@ -29,12 +30,12 @@ function App() {
       ${setBackground()}
     `}>
       <Routes>
-        <Route path='/' element={<Categories/>}/>
+        <Route path='/' element={!isLogged ? <Navigate to="/login" replace/> : <Categories/>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path='/register' element={<Register/>}/>
-        <Route path="/register/set-photo" element={<SetPhoto/>}/>
-        <Route path="/game" element={<Game/>}/>
-        <Route path="/score" element={<Score/>}/>
+        <Route path="/register/set-photo" element={!isLogged ? <Navigate to="/login" replace/> : <SetPhoto/>}/>
+        <Route path="/game" element={!isLogged ? <Navigate to="/login" replace/> : <Game/>}/>
+        <Route path="/score" element={!isLogged ? <Navigate to="/login" replace/> : <Score/>}/>
       </Routes>
     </div>
   )
