@@ -1,0 +1,16 @@
+.answers{
+  padding: 0 100px;
+  /* background-color: bisque; */
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  justify-items: center;
+}
+
+.option{
+  width: calc(325px * 1.2);
+  height: calc(135px * 1.2);
+  padding: 0 30px;
+  border-radius: 24px;
+}

@@ -1,0 +1,47 @@
+.header{
+  margin: 0 auto;
+  width: 98%;
+  
+  /* background-color: aqua; */
+  
+  display: grid;
+  grid-template-columns: 1fr 10fr 1fr;
+}
+
+.left{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background-color: aqua; */
+  font-size: 30px;
+
+}
+
+.center{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background-color: blueviolet */
+}
+
+.right{
+  position: absolute;
+  top: 20px;
+  right: 40px;
+  /* font-size: 24px; */
+  /* background-color: bisque; */
+}
+
+.question{
+  /* width: 1200px; */
+  width: 80%;
+  /* background-color: aqua; */
+  font-weight: 300;
+  font-size: 36px;
+  text-align: center;
+}
+
+.score{
+  color: black;
+}
