@@ -29,6 +29,53 @@ export async function createQuestion(req: Request, res: Response){
   return res.json(result)
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 export async function populate(req: Request, res: Response){
   let questions = [
     {

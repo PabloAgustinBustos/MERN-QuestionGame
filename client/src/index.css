@@ -29,6 +29,10 @@ button:hover{
   background-color: #F61249;
 }
 
+.close:hover{
+  background-color: #db0f3f;
+}
+
 input{
   width: 221px;
   height: 27px;
