@@ -1,12 +1,28 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Answers from '../components/Game/Answers'
 import Header from '../components/Game/Header'
 import ProgressBar from '../components/Game/ProgressBar'
 import s from "./styles/Game.module.css"
 
+type Question = {
+  answers: string[]
+  correctIndex: number
+  text: string
+}
+
 const Game = () => {
   const [currentId, setCurrentId] = useState(0)
   
+  const [question, setQuestion] = useState<Question>({
+    answers: ["1", "2", "3", "4"],
+    correctIndex: 0,
+    text: "¿?"
+  })
+
+  const [isDone, setIsDone] = useState(false)
+
+  const [gen] = useState(getOptions())
+
   let questions = [
     {
         text:"¿Qué es una variable?" ,
@@ -70,11 +86,25 @@ const Game = () => {
     },
   ]
 
+  function* getOptions(){
+    for(let question of questions){
+      yield question
+    }
+  }
+  
+  useEffect(() => {
+    let {value, done} = gen.next()
+
+    if(value) setQuestion(value)
+
+    if(done !== isDone && done) setIsDone(done)
+  }, [currentId])
+
   return (
     <main className={s.main}>
-      <Header amount={questions.length} current={currentId+1}/>
+      <Header amount={questions.length} current={currentId} title={question.text}/>
 
-      <Answers next={setCurrentId}/>
+      <Answers options={question} next={setCurrentId}/>
 
       <section className={s.road}>
         <ProgressBar amount={questions.length} current={currentId}/>

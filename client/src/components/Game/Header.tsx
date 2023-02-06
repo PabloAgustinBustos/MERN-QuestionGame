@@ -4,10 +4,12 @@ import s from "./styles/Header.module.css"
 interface IProps{
   amount: number
   current: number
+  title: string
 }
 
-const Header: React.FC<IProps> = ({amount, current}) => {
+const Header: React.FC<IProps> = ({amount, current, title}) => {
   const getLevel = () => `${current}/${amount}`
+
   return (
     <header className={s.header}>
       <div className={s.left}>
@@ -15,12 +17,12 @@ const Header: React.FC<IProps> = ({amount, current}) => {
       </div>
       
       <div className={s.center}>
-        <h1 className={s.question}>¿Cuál es la respuesta?</h1>
+        <h1 className={s.question}>{title}</h1>
       </div>
 
-      <div className={s.right}>
+      {/* <div className={s.right}>
         <h1 className={s.score}>Score: 00</h1>
-      </div>
+      </div> */}
     </header>
   )
 }
