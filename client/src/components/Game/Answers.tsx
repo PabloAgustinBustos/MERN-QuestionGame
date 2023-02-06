@@ -9,15 +9,18 @@ type Options = {
 interface IProps{
   options: Options
   next: React.Dispatch<React.SetStateAction<number>>
+  increment: React.Dispatch<React.SetStateAction<number>>
 }
 
-const Answers: React.FC<IProps> = ({options, next}) => {
+const Answers: React.FC<IProps> = ({options, next, increment}) => {
   function handleClick(e: React.MouseEvent<HTMLButtonElement>){
     const element = e.target as HTMLElement
 
     if(element.tagName.toLowerCase() === "button"){
       let {id} = element
       
+      increment(prev => Number(id) === Number(options.correctIndex) ? prev+10 : prev)
+
       next(current => current+1)
     }
   }

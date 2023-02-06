@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import Answers from '../components/Game/Answers'
 import Header from '../components/Game/Header'
 import ProgressBar from '../components/Game/ProgressBar'
@@ -20,8 +21,11 @@ const Game = () => {
   })
 
   const [isDone, setIsDone] = useState(false)
+  const [score, setScore] = useState(0)
 
   const [gen] = useState(getOptions())
+
+  const navigate = useNavigate()
 
   let questions = [
     {
@@ -93,6 +97,8 @@ const Game = () => {
   }
   
   useEffect(() => {
+    if(questions.length === currentId) return navigate(`/score/${score}`)
+
     let {value, done} = gen.next()
 
     if(value) setQuestion(value)
@@ -104,7 +110,7 @@ const Game = () => {
     <main className={s.main}>
       <Header amount={questions.length} current={currentId} title={question.text}/>
 
-      <Answers options={question} next={setCurrentId}/>
+      <Answers options={question} next={setCurrentId} increment={setScore}/>
 
       <section className={s.road}>
         <ProgressBar amount={questions.length} current={currentId}/>

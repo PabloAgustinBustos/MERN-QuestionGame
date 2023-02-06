@@ -35,7 +35,7 @@ function App() {
         <Route path='/register' element={<Register/>}/>
         <Route path="/register/set-photo" element={!isLogged ? <Navigate to="/login" replace/> : <SetPhoto/>}/>
         <Route path="/game" element={!isLogged ? <Navigate to="/login" replace/> : <Game/>}/>
-        <Route path="/score" element={!isLogged ? <Navigate to="/login" replace/> : <Score/>}/>
+        <Route path="/score/:number" element={!isLogged ? <Navigate to="/login" replace/> : <Score/>}/>
       </Routes>
     </div>
   )

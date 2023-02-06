@@ -22,7 +22,7 @@ const ProgressBar: React.FC<IProps> = ({amount, current}) => {
     )
   }
 
-  const calculateWidth = () => (current/(amount-1))*100 + "%"
+  const calculateWidth = () => current < amount ? (current/(amount-1))*100 + "%" : "100%"
 
   return (<>
     <div className={s.line}>
