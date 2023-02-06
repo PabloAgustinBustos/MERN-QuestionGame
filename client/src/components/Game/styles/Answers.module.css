@@ -13,4 +13,14 @@
   height: calc(135px * 1.2);
   padding: 0 30px;
   border-radius: 24px;
+
+  background-color: #A639FB;
+
+  box-shadow: 0px 0px 8px 5px #BC77F2;
+  transition: box-shadow .2s, background-color .2s;
+}
+
+.option:hover{
+  background-color: #A639FB;
+  box-shadow: 0px 0px 40px 20px #BC77F2;
 }

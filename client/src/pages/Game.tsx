@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Answers from '../components/Game/Answers'
 import Header from '../components/Game/Header'
+import ProgressBar from '../components/Game/ProgressBar'
 import s from "./styles/Game.module.css"
 
 const Game = () => {
@@ -71,12 +72,12 @@ const Game = () => {
 
   return (
     <main className={s.main}>
-      <Header/>
+      <Header amount={questions.length} current={currentId+1}/>
 
-      <Answers/>
+      <Answers next={setCurrentId}/>
 
       <section className={s.road}>
-
+        <ProgressBar amount={questions.length} current={currentId}/>
       </section>
     </main>
   )

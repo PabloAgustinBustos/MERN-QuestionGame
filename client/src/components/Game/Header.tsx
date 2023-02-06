@@ -1,11 +1,17 @@
 import React from 'react'
 import s from "./styles/Header.module.css"
 
-const Header = () => {
+interface IProps{
+  amount: number
+  current: number
+}
+
+const Header: React.FC<IProps> = ({amount, current}) => {
+  const getLevel = () => `${current}/${amount}`
   return (
     <header className={s.header}>
       <div className={s.left}>
-        <h2>0/10</h2>
+        <h2>{getLevel()}</h2>
       </div>
       
       <div className={s.center}>
