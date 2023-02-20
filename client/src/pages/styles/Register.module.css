@@ -14,11 +14,17 @@
 }
 
 .form{
+  margin: 0 auto;
+  width: 950px;
+  /* padding: 150px 0; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 30px;
+
+  /* background-color: aqua; */
+  position: relative;
 }
 
 .sub{
@@ -30,3 +36,4 @@
   color: #394ae8;
   cursor: pointer;
 }
+

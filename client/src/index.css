@@ -25,12 +25,34 @@ button:hover{
   background-color: #820fdb;
 }
 
+button:disabled{
+  cursor: default;
+  background-color: #a28bb4;
+}
+
 .close{
   background-color: #F61249;
 }
 
 .close:hover{
   background-color: #db0f3f;
+}
+
+.inputContainer{
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  /* background-color: #0172AF; */
+  
+  position: relative;
+}
+
+.validatorMessage{
+  width: 350px;
+  padding-left: 6px;
+  bottom: 0px;
+  position: absolute;
+  color: #db0f3f;
 }
 
 input{
@@ -42,14 +64,23 @@ input{
   border: 0;
   border-radius: 5px;
   outline: none;
-
+  
   color: black;
 
   font-size: 16px;
 }
 
+.invalid{
+  outline: 5px solid #db0f3f75;
+}
+
 input::placeholder{
   color: #838383;
+}
+
+input:focus{
+  outline: 5px solid #0172af79;
+  box-sizing: border-box;
 }
 
 .subText{

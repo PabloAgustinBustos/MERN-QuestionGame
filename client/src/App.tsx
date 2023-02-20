@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Navigate, Route, Routes, useLocation, useParams } from 'react-router-dom'
 import s from "./App.module.css"
+import useAuth from './hooks/useAuth'
 import Categories from './pages/Categories'
 import Game from './pages/Game'
 import Login from './pages/Login'
@@ -10,7 +11,7 @@ import SetPhoto from './pages/SetPhoto'
 
 function App() {
   const location = useLocation()
-  let isLogged = true
+  const isLogged = useAuth()
 
   const setBackground = () => {
     if(location.pathname === "/"){

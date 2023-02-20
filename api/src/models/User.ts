@@ -15,8 +15,6 @@ const User = new Schema<IUser>({
     default: () => {
       let id = v4()
 
-      console.log("se crea usuario con id", id)
-
       return id
     }
   },
