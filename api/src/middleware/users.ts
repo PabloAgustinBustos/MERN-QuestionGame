@@ -15,6 +15,8 @@ export function checkData(req: Request, res: Response, next: NextFunction){
 }
 
 export function checkDataBeforeLogin(req: Request, res: Response, next: NextFunction){
+  console.log(req.body)
+  
   const {
     email,
     password

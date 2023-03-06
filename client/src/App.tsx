@@ -11,7 +11,7 @@ import SetPhoto from './pages/SetPhoto'
 
 function App() {
   const location = useLocation()
-  const isLogged = useAuth()
+  const isLogged = useAuth(location)
 
   const setBackground = () => {
     if(location.pathname === "/"){
@@ -32,8 +32,8 @@ function App() {
     `}>
       <Routes>
         <Route path='/' element={!isLogged ? <Navigate to="/login" replace/> : <Categories/>}/>
-        <Route path="/login" element={<Login/>}/>
-        <Route path='/register' element={<Register/>}/>
+        <Route path="/login" element={isLogged ? <Navigate to="/" replace/> : <Login/>}/>
+        <Route path='/register' element={isLogged ? <Navigate to="/" replace/> : <Register/>}/>
         <Route path="/register/set-photo" element={!isLogged ? <Navigate to="/login" replace/> : <SetPhoto/>}/>
         <Route path="/game" element={!isLogged ? <Navigate to="/login" replace/> : <Game/>}/>
         <Route path="/score/:number" element={!isLogged ? <Navigate to="/login" replace/> : <Score/>}/>

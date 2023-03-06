@@ -13,13 +13,6 @@ const PasswordInfo: React.FC<IProps> = ({control, password}) => {
     control.start({opacity: 1})
   }, [])
 
-  useEffect(() => {
-    console.log(password)
-  }, [password])
-
-  let good = "#009988"
-  let bad = "#ff2825"
-
   const almostEight = () => password.length >= 8
   const hasOneCapital = () => /[A-Z]/.test(password)
   const hasOneNumber = () => /[0-9]/.test(password)

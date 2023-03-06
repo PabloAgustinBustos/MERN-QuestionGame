@@ -1,8 +1,9 @@
 import { useAnimation } from 'framer-motion'
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import PasswordInfo from '../components/PasswordInfo'
-import { IUserDataForRegister, IUserDataForRegisterValidation } from '../types'
+import ModeIcon from '../components/ModeIcon'
+import { IPasswordMode, IUserDataForRegister, IUserDataForRegisterValidation } from '../types'
 import s from "./styles/Register.module.css"
 
 const Register = () => {
@@ -24,7 +25,10 @@ const Register = () => {
   const isNotValid = (field: string) => (dataActive[field] > 0) && (data[field] === "")
   const disabled = () => data.email.length === 0 || data.password.length === 0 || data.nickname.length === 0 || data.confirmPassword?.length === 0
 
+  const [passwordMode, setPasswordMode] = useState<IPasswordMode>("password")
+
   const passwordInfoControl = useAnimation()
+  const navigate = useNavigate()
 
   function handleChange(e: React.FormEvent<HTMLInputElement>){
     const {id, value} = e.target as HTMLInputElement
@@ -81,6 +85,24 @@ const Register = () => {
     console.log(response)
   }
 
+  // useEffect(() => {
+  //   const token = localStorage.getItem("kiuact-token")
+    
+  //   if(token){
+  //     fetch("http://localhost:3001/users/checkAuth", {
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         "Authorization": "Bearer "+token
+  //       }
+  //     })
+  //     .then(res => res.json())
+  //     .then(data => {
+  //       if(data.status !== "error") navigate("/")
+  //     })
+  //   }
+  // }, [])
+  
+  
   return (
     <div className={s.container}>
       <h1 className={s.title}>Ingrese los datos para crear su cuenta de usuario</h1>
@@ -119,10 +141,10 @@ const Register = () => {
             onFocus={() => setShowPasswordValidation(true)}
             value={data.password}
             id="password"
-            type="password" 
+            type={passwordMode} 
             placeholder='Password'
-          />
-
+          ></input>
+          <ModeIcon onClick={() => passwordMode==="password" ? setPasswordMode("text") : setPasswordMode("password")} current={passwordMode} className={s.icon}/>
           {isNotValid("password") && (<span className="validatorMessage">Debe escribir una contraseña válida</span>)}
         </div>
 
@@ -132,10 +154,11 @@ const Register = () => {
             onBlur={checkBlur}
             value={data.confirmPassword}
             id="confirmPassword"
-            type="password" 
+            type={passwordMode} 
             placeholder='Confirm Password'
           />
 
+          <ModeIcon onClick={() => passwordMode==="password" ? setPasswordMode("text") : setPasswordMode("password")} current={passwordMode} className={s.icon}/>
           {isNotValid("confirmPassword") && (<span className="validatorMessage">Debe escribir una contraseña válida</span>)}
         </div>
 

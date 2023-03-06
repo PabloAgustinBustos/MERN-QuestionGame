@@ -37,3 +37,10 @@
   cursor: pointer;
 }
 
+
+.icon{
+  position: absolute;
+  top: 4px;
+  right: 5px;
+  cursor: pointer;
+}

@@ -1,6 +1,6 @@
 import { useAnimation } from 'framer-motion'
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import PasswordInfo from '../components/PasswordInfo'
 import { IUserDataForLogin, IUserDataForLoginValidation } from '../types'
 import s from "./styles/Register.module.css"
@@ -15,6 +15,8 @@ const Login = () => {
     email: 0,
     password: 0,
   })
+
+  const navigate = useNavigate()
 
   const isNotEmailValid = () => (dataActive.email > 0) && (data.email === "")
   const isNotPasswordValid = () => (dataActive.password > 0) && (data.password === "")
@@ -46,8 +48,36 @@ const Login = () => {
 
   function login(e: React.FormEvent<HTMLFormElement>){
     e.preventDefault()
-    alert("aaa")
+    fetch("http://localhost:3001/users/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data)
+    })
+    .then(res => res.json())
+    .then(data => {
+      localStorage.setItem("kiuact-token", data.token)
+      navigate("/")
+    })
   }
+
+  // useEffect(() => {
+  //   const token = localStorage.getItem("kiuact-token")
+    
+  //   if(token){
+  //     fetch("http://localhost:3001/users/checkAuth", {
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         "Authorization": "Bearer "+token
+  //       }
+  //     })
+  //     .then(res => res.json())
+  //     .then(data => {
+  //       if(data.status !== "error") navigate("/")
+  //     })
+  //   }
+  // }, [])
 
   return (
     <div className={s.container}>
@@ -65,9 +95,6 @@ const Login = () => {
 
           {isNotEmailValid() && (<span className="validatorMessage">El campo email no puede quedar vacío</span>)}
         </div>
-        
-        {/* {showPasswordValidation && <PasswordInfo password={data.password} control={passwordInfoControl}/>} */}
-        
 
         <div className="inputContainer">
           <input 

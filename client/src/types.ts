@@ -18,3 +18,5 @@ export interface IUserDataForRegisterValidation extends IUserDataForLoginValidat
 export interface IUserDataForRegister extends IUserDataForLogin{
   nickname: string
 }
+
+export type IPasswordMode = "password" | "text"
